@@ -6,10 +6,29 @@ import userEvent from '@testing-library/user-event';
 import Display from './../Display';
 
 
-test('renders without errors with no props', ()=>{
+const testShow = {
+    name: "Stranger Things",
+    summary: "summary",
+    seasons: [{id: "1", name: "hello", episode:[]}, {id: "2", name: "hello", episodes: []}]  
+    
+}
 
-});
 
-test('renders Show component when the button is clicked ', ()=>{});
+test("Display component renders without any passed in props", () =>{
+    render(<Display/>)
+})
 
-test('renders show season options matching your data when the button is clicked', ()=>{});
+test("when fetch button is pressed, SHow component will display", () => {
+    const {act} = render(<Display/>)
+} )
+
+test("show component displays when fetch button is pressed" , async () =>{
+render(<Display/>)
+const button = screen.getByRole("button")
+userEvent.click(button)
+fetchShow.mockResovledValueOnce(testShow)
+
+const showComp = await screen.findByTestId("show-container")
+expect(showComp).toBeInTheDocument()
+
+} )
